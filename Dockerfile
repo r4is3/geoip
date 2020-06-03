@@ -39,6 +39,7 @@ COPY GeoIP.conf /usr/etc/GeoIP.conf
 
 # install geoipupdate
 RUN BUILD_DEPS='gcc make libc-dev libtool automake autoconf git' \
+ && echo -e "nameserver 8.8.8.8\nnameserver 9.9.9.9\nnameserver 1.1.1.1" > /etc/resolv.conf \
  && echo -e "http://nl.alpinelinux.org/alpine/v3.12/main\nhttp://nl.alpinelinux.org/alpine/v3.12/community" > /etc/apk/repositories \
  && apk --no-cache add curl-dev ${BUILD_DEPS} \
  && apk update \
