@@ -37,10 +37,9 @@ VOLUME ${GEOIP_DB_DIR}
 # copy geoipupdate settings
 COPY GeoIP.conf /usr/etc/GeoIP.conf
 
-RUN echo -e "http://nl.alpinelinux.org/alpine/v3.12/main\nhttp://nl.alpinelinux.org/alpine/v3.12/community" > /etc/apk/repositories
-
 # install geoipupdate
 RUN BUILD_DEPS='gcc make libc-dev libtool automake autoconf git' \
+ && echo -e "http://nl.alpinelinux.org/alpine/v3.12/main\nhttp://nl.alpinelinux.org/alpine/v3.12/community" > /etc/apk/repositories \
  && apk --no-cache add curl-dev ${BUILD_DEPS} \
  && apk update \
  && apk add ca-certificates \
